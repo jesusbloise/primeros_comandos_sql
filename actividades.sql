@@ -59,7 +59,17 @@ VALUES
 ('carobel@hotmail', 'carolina', 67887977, 'patagonia', 8),
 ('matia@hotmail', 'matiaz',8078088, 'cocacola', 7),
 ('josefa@gmail', 'josefa', 8080788, 'colum', 3),
-('luis@outlook', 'luis', 870876457, 'lider', 2); //8 registros 
+('luis@outlook', 'luis', 870876457, 'lider', 2),
+('rodrigo@yahoo', 'rodrigo', 870876457, 'falabella', 5); //9 registros 
+
+SELECT *
+FROM clientes
+ORDER BY prioridad DESC
+LIMIT 3;
+
+SELECT *
+FROM clientes
+WHERE prioridad > 5;
 
 INSERT TO estudiantes (nombre) 
 VALUES
