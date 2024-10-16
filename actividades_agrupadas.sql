@@ -1,15 +1,15 @@
-//ACTIVIDAD 1
-"C:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres // este es para la terminal
+--ACTIVIDAD 1
+"C:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres --este es para la terminal
 
-create DATABASE actividades_grupales; // creamos nuestra DB(base de datos) 
+create DATABASE actividades_grupales; -- creamos nuestra DB(base de datos) 
 
-\c actividades_grupales; // entramos a la DB
+\c actividades_grupales; -- entramos a la DB
 
 create table bitcoins (
     email varchar(50),
     bitcoinAdress TEXT,
     monto decimal(10,2)
-);              //creamos nuestra tabla
+);              --creamos nuestra tabla
 
 insert into bitcoins (email, bitcoinAdress, monto) values
 ('jaime@email.com', '1HB8RTKNzFAQZ5LtLFRL3R7rbaLGuJt5Un', 0.32),
@@ -43,35 +43,35 @@ insert into bitcoins (email, bitcoinAdress, monto) values
 ('jaime@email.com', '1EL98fxNT1LyS6C8ckFBqocTho9NsEQATS', 0.96),
 ('camila@email.com', '1B8xZAcBbU3mTfb6bNJvGtLdPanyAK9kN6', 0.79);
 
-select count(*) from bitcoins;
+select count(*) from bitcoins; --aqui nos indica cuantos registros tenemos
 
 SELECT MAX(monto) FROM bitcoins;
 
 SELECT MIN(monto) FROM bitcoins;
 
-SELECT AVG(monto) FROM bitcoins; //solicitamos el promedio de monto de bitcoins
+SELECT AVG(monto) FROM bitcoins; --solicitamos el promedio de monto de bitcoins
 
-SELECT SUM(monto) FROM bitcoins; //sumamos todo el monto de bitcoins
+SELECT SUM(monto) FROM bitcoins; --sumamos todo el monto de bitcoins
 
 SELECT DISTINCT(email) From bitcoins;
 
 SELECT COUNT(DISTINCT(email)) From bitcoins;
 
-//ACTIVIDAD 2
+--ACTIVIDAD 2
 
-SELECT DISTINCT(email) From bitcoins;     //selecciona las categorias sin repetirlas y las muestra
+SELECT DISTINCT(email) From bitcoins;     --selecciona las categorias sin repetirlas y las muestra
 
-SELECT COUNT(DISTINCT(email)) From bitcoins;  // esto es lo mismo pero solo te muestra el numero
+SELECT COUNT(DISTINCT(email)) From bitcoins;  --esto es lo mismo pero solo te muestra el numero
 
 SELECT DISTINCT(monto) From bitcoins;
 
 SELECT COUNT(DISTINCT(monto)) From bitcoins;
 
-//ACTIVIDAD 3
+--ACTIVIDAD 3
 
 CREATE TABLE ventas (
     categoria varchar(50),
-    monto NUMERIC              // se crea con numeric para que acepte tanto decimal como entero
+    monto NUMERIC              -- se crea con numeric para que acepte tanto decimal como entero
 );
 
 INSERT INTO ventas (categoria, monto) VALUES
@@ -90,80 +90,80 @@ INSERT INTO ventas (categoria, monto) VALUES
 ('Kids', 980),
 ('Grocery', 300);
 
-SELECT categoria FROM ventas GROUP by categoria; //agrupa las categorias y muestra las mismas
+SELECT categoria FROM ventas GROUP by categoria; --agrupa las categorias y muestra las mismas
 
-SELECT distinct(categoria) FROM ventas; // esto igual
+SELECT distinct(categoria) FROM ventas; -- esto igual
 
-SELECT categoria, count(categoria) FROM ventas GROUP by categoria; //aqui agregamos una columna que nos enumera cuantas veces se repite ese dato
+SELECT categoria, count(categoria) FROM ventas GROUP by categoria; --aqui agregamos una columna que nos enumera cuantas veces se repite ese dato
 
-SELECT categoria, SUM(monto) FROM ventas GROUP BY categoria; // aqui estamos sumando los monto de los datos repetidos
+SELECT categoria, SUM(monto) FROM ventas GROUP BY categoria; -- aqui estamos sumando los monto de los datos repetidos
 
-// ACTIVIDAD 4.
+-- ACTIVIDAD 4.
 
-SELECT categoria, SUM(monto) FROM ventas GROUP BY categoria; // aqui estamos sumando los monto de los datos repetidos
+SELECT categoria, SUM(monto) FROM ventas GROUP BY categoria; -- aqui estamos sumando los monto de los datos repetidos
 
-SELECT categoria, count(categoria) FROM ventas GROUP by categoria; //aqui agregamos una columna que nos enumera cuantas veces se repite ese dato
+SELECT categoria, count(categoria) FROM ventas GROUP by categoria; --aqui agregamos una columna que nos enumera cuantas veces se repite ese dato
 
-SELECT categoria, AVG(monto) FROM ventas GROUP by categoria; // aqui calculamos el promedio de venta de cada categoria
+SELECT categoria, AVG(monto) FROM ventas GROUP by categoria; -- aqui calculamos el promedio de venta de cada categoria
 
-SELECT categoria, MIN(monto) FROM ventas GROUP by categoria; //seleccionamos el min vendido de cada categoria
+SELECT categoria, MIN(monto) FROM ventas GROUP by categoria; --seleccionamos el min vendido de cada categoria
 
-SELECT categoria, MAX(monto) FROM ventas GROUP by categoria; //seleccionamos el monto maximo de cada categoria
+SELECT categoria, MAX(monto) FROM ventas GROUP by categoria; --seleccionamos el monto maximo de cada categoria
 
-SELECT email, count(monto) from bitcoins group by email; //  Seleccionar la cantidad total de depósitos recibidos por cada usuario.
+SELECT email, count(monto) from bitcoins group by email; --  Seleccionar la cantidad total de depósitos recibidos por cada usuario.
 
-SELECT email, SUM(monto) from bitcoins group by email; //Seleccionar el monto total de bitcoins de cada usuario.
+SELECT email, SUM(monto) from bitcoins group by email; --Seleccionar el monto total de bitcoins de cada usuario.
 
-SELECT email, MIN(monto) from bitcoins group by email; //Seleccionar el menor depósito recibido por cada usuario
+SELECT email, MIN(monto) from bitcoins group by email; --Seleccionar el menor depósito recibido por cada usuario
 
-SELECT email, MAX(monto) from bitcoins group by email; //Seleccionar el mayor depósito recibido por cada usuario.
+SELECT email, MAX(monto) from bitcoins group by email; --Seleccionar el mayor depósito recibido por cada usuario.
 
 SELECT categoria, 
 COUNT(categoria) FROM ventas 
 GROUP BY categoria 
-HAVING COUNT(categoria)>= 2; //nos permite filtrar el resultado y colocar la condicion para ver quienes tienen mas de dos ventas en este cambiamos
+HAVING COUNT(categoria)>= 2; --nos permite filtrar el resultado y colocar la condicion para ver quienes tienen mas de dos ventas en este cambiamos
 
 SELECT categoria, 
 SUM(monto) FROM ventas 
 GROUP BY categoria 
-HAVING COUNT(categoria) > 3; //aqui condicionamos para que solo me sume las ventas del la misma categoria si tiene mas de 3 ventas(ejemplo)
+HAVING COUNT(categoria) > 3; --aqui condicionamos para que solo me sume las ventas del la misma categoria si tiene mas de 3 ventas(ejemplo)
 
 SELECT categoria, 
 COUNT(categoria) FROM ventas 
 GROUP BY categoria 
-HAVING SUM(monto) > 500; //o podemos contar solo si el monto total es mayor 
+HAVING SUM(monto) > 500; -- podemos contar solo si el monto total es mayor 
 
-//ACTIVIDAD 5
+--ACTIVIDAD 5
 
 SELECT email, 
 COUNT(email) FROM bitcoins
 GROUP BY email 
-HAVING COUNT(email) <= 1;  //Listar todos los correos de los usuarios que hayan recibido un solo depósito
+HAVING COUNT(email) <= 1;  --Listar todos los correos de los usuarios que hayan recibido un solo depósito
 
 SELECT email
 FROM bitcoins
 GROUP BY email
-HAVING COUNT(*) = 1;//Listar todos los correos de los usuarios que hayan recibido un solo depósito
+HAVING COUNT(*) = 1;--Listar todos los correos de los usuarios que hayan recibido un solo depósito
 
 SELECT email, SUM(monto) AS total_depositos
 FROM bitcoins
 GROUP BY email
-HAVING SUM(monto) > 1.5;//Listar todos los correos de los usuarios que hayan recibido un total de depósitos mayor a 1.5 bitcoins.
+HAVING SUM(monto) > 1.5;--Listar todos los correos de los usuarios que hayan recibido un total de depósitos mayor a 1.5 bitcoins.
 
 
-// ACTIVIDAD 6
-
-SELECT * 
-FROM bitcoins
-WHERE monto >= 0.9; // Listar todas las transacciones de la tabla bitcoin que sean mayores o iguales a 0.9 btc.
+-- ACTIVIDAD 6
 
 SELECT * 
 FROM bitcoins
-WHERE monto <= 0.5; //Listar todas las transacciones de la tabla bitcoin, exceptuando aquellos que de monto superior a 0.5 bitcoins.
+WHERE monto >= 0.9; -- Listar todas las transacciones de la tabla bitcoin que sean mayores o iguales a 0.9 btc.
 
-select * from ventas where monto > (select avg(monto) from ventas); //hacer una consulta dentro de otra
+SELECT * 
+FROM bitcoins
+WHERE monto <= 0.5; --Listar todas las transacciones de la tabla bitcoin, exceptuando aquellos que de monto superior a 0.5 bitcoins.
 
-//ACTIVIDAD 7
+select * from ventas where monto > (select avg(monto) from ventas); --hacer una consulta dentro de otra
+
+--ACTIVIDAD 7
 
 select * from bitcoins where monto > (select avg(monto) from bitcoins);
 
