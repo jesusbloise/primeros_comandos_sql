@@ -193,9 +193,3 @@ FROM  usuarios u
 LEFT JOIN comentarios c ON u.id = c.usuario_id
 GROUP BY u.id, u.email
 HAVING COUNT(c.id) = 0;
-
-
-
-
-
-

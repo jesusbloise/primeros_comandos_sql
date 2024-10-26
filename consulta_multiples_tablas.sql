@@ -54,24 +54,27 @@ insert into usuarios (email, nombre) values ('pedro@email.com', 'Pedro');
 insert into usuarios (email, nombre) values ('josefina@email.com', 'Josefina');
 insert into usuarios (email, nombre) values ('pp@email.com', 'Pepe');
 
+-- mostramos ambas tablas con el campo en comun que es email. y mostramos una sola ves el emali se puede seleccionar de cualquier tabla.
 SELECT usuarios.nombre, bitcoins.email, bitcoins.bitcoinAdress, bitcoins.monto
 FROM usuarios, bitcoins
-WHERE usuarios.email = bitcoins.email;  -- mostramos ambas tablas con el campo en comun que es email. y mostramos una sola ves el emali se puede seleccionar de cualquier tabla.
+WHERE usuarios.email = bitcoins.email;  
 
-
+-- mostramos ambas tablas con el campo en comun que es email pero con join
 SELECT usuarios.nombre, usuarios.email, bitcoins.bitcoinAdress, bitcoins.monto
 FROM usuarios
-JOIN bitcoins ON usuarios.email = bitcoins.email; -- mostramos ambas tablas con el campo en comun que es email pero con join.
+JOIN bitcoins ON usuarios.email = bitcoins.email; 
 
+--con este comando unimos ambas tablas con el campo en comun lo mismo en las anteriores pero usando inner join
 SELECT usuarios.nombre, usuarios.email, bitcoins.bitcoinAdress, bitcoins.monto
 FROM usuarios
-INNER JOIN bitcoins ON usuarios.email = bitcoins.email; --con este comando unimos ambas tablas con el campo en comun lo mismo en las anteriores pero usando inner join
+INNER JOIN bitcoins ON usuarios.email = bitcoins.email; 
 
-
+--Selecciona los datos de ambas tablas utilizando LEFT JOIN y tomando como primera la tabla de bitcoins.
 SELECT bitcoins.email, bitcoins.bitcoinAdress, bitcoins.monto, usuarios.nombre
 FROM bitcoins
-LEFT JOIN usuarios ON bitcoins.email = usuarios.email; --Selecciona los datos de ambas tablas utilizando LEFT JOIN y tomando como primera la tabla de bitcoins.
+LEFT JOIN usuarios ON bitcoins.email = usuarios.email; 
 
+--Selecciona los datos de ambas tablas utilizando LEFT JOIN y tomando como primera la tabla de usuarios
 SELECT usuarios.email, usuarios.nombre, bitcoins.bitcoinAdress, bitcoins.monto
 FROM usuarios
 LEFT JOIN bitcoins ON usuarios.email = bitcoins.email; --Selecciona los datos de ambas tablas utilizando LEFT JOIN y tomando como primera la tabla de usuarios
@@ -79,11 +82,12 @@ LEFT JOIN bitcoins ON usuarios.email = bitcoins.email; --Selecciona los datos de
 -- En la primera consulta (FROM bitcoins), la tabla principal es bitcoins, lo que significa que verás todos los registros de bitcoins, incluso si no hay un usuario asociado.
 -- En la segunda consulta (FROM usuarios), la tabla principal es usuarios, por lo que verás todos los usuarios, incluso si no han realizado transacciones de bitcoins.
 
+--Diferencias con LEFT JOIN: El RIGHT JOIN asegura que todos los registros de usuarios se incluyan, mientras que en un LEFT JOIN (con bitcoins primero) se incluyen todos los registros de bitcoins.
 SELECT bitcoins.email, bitcoins.bitcoinAdress, bitcoins.monto, usuarios.nombre
 FROM bitcoins
-RIGHT JOIN usuarios ON bitcoins.email = usuarios.email; --Diferencias con LEFT JOIN: El RIGHT JOIN asegura que todos los registros de usuarios se incluyan, mientras que en un LEFT JOIN (con bitcoins primero) se incluyen todos los registros de bitcoins.
+RIGHT JOIN usuarios ON bitcoins.email = usuarios.email; 
 
+--El FULL JOIN es útil cuando necesitas combinar todos los registros de ambas tablas y ver las coincidencias, así como los registros que no tienen correspondencia en la otra tabla.
 SELECT usuarios.email, usuarios.nombre, bitcoins.bitcoinAdress, bitcoins.monto
 FROM usuarios
-FULL JOIN bitcoins ON usuarios.email = bitcoins.email; --El FULL JOIN es útil cuando necesitas combinar todos los registros de ambas tablas y ver las coincidencias, así como los registros que no tienen correspondencia en la otra tabla.
-
+FULL JOIN bitcoins ON usuarios.email = bitcoins.email; 

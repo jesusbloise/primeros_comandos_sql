@@ -39,6 +39,8 @@ VALUES ( 83, '2021-01-08', 'Blog' );
 INSERT INTO INSCRITOS(cantidad, fecha, fuente)
 VALUES ( 99, '2021-01-08', 'Página' );
 
+select * from INSCRITOS;
+
 select count(*) from INSCRITOS; --con este codigo contamos los registros
 
 select sum(cantidad) from INSCRITOS; --sumamos las cantidades 
@@ -47,7 +49,7 @@ select * from INSCRITOS where fecha  = (select min(fecha) from INSCRITOS LIMIT 2
 
 SELECT fecha, SUM(cantidad) from INSCRITOS group by fecha; -- contamos cuantos inscritos por dia hay
 
-SELECT fuente, SUM(cantidad) from INSCRITOS group by fuente;
+SELECT fuente, SUM(cantidad) from INSCRITOS group by fuente; --contamos cuantos inscitos por fuente hay 
 
 SELECT fecha, SUM(cantidad) AS total_inscritos
 FROM INSCRITOS
@@ -64,5 +66,4 @@ sum(cantidad) FROM INSCRITOS
 GROUP BY fecha 
 HAVING sum(cantidad)> 50; -- mostramos los dias que se inscribieron mas de 50 personas
 
-SELECT fecha, AVG(cantidad) as promedio_diario FROM INSCRITOS GROUP by fecha;
-
+drop table inscritos;
