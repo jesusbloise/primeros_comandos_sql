@@ -21,7 +21,7 @@ INSERT  INTO usuarios (email, nombre, apellido, rol) VALUES
 ('daya@example.com', 'dayana', 'alvarez', 'usuario'),
 ('usuario1@example.com', 'Juan', 'Pérez', 'usuario'),
 ('admin@example.com', 'Ana', 'García', 'administrador'),
-('usuario2@example.com', 'Luis', 'Martínez', 'usuario'); --ingresamos los datos y recuerden que el id se auto incrementa solo 
+('usuario2@example.com', 'Luis', 'Martínez', 'usuario');
 
 --vemos la tabla usuarios
 SELECT * FROM usuario; --vemos la tabla usuarios

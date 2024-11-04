@@ -16,27 +16,45 @@ latitude DECIMAL(10,8),
 longitude DECIMAL(11,8)
 );
 
+CREATE TABLE states(
+id INTEGER,
+name VARCHAR,
+country_id INTEGER,
+state_code CHAR(5),
+state_type VARCHAR,
+latitude DECIMAL(10,8),
+longitude DECIMAL(11,8)
+);
+
+CREATE TABLE cities(
+id INTEGER,
+name VARCHAR,
+state_id INTEGER,
+latitude DECIMAL(10,8),
+longitude DECIMAL(11,8)
+);
+
+-- con este codigo podemos introducir datos a las tablas 
 \copy countries from 'C:\Users\usuario\Documents\desafio-latam\modulo5\actividades' DELIMITER ',' CSV HEADER
 
 \copy countries from '/mnt/C:/Users/usuario/Documents/desafio_latam/modulo5/actividades/Documentos_actividad_guía/countries.csv'
 delimiter ',' csv header;
 
+--podemos ver los nombres de las tablas dentro de la db
 SELECT table_name 
 FROM information_schema.tables 
-WHERE table_schema = 'public'; --podemos ver los nombres de las tablas dentro de la db
+WHERE table_schema = 'public'; 
 
+--podemos contar las tablas que tenemos en la db
 SELECT COUNT(*) 
 FROM information_schema.tables 
-WHERE table_schema = 'public'; --podemos contar las tablas que tenemos en la db
+WHERE table_schema = 'public'; 
 
-\copy cities FROM '/mnt/c/Users/usuario/Documents/desafio_latam/modulo5/actividades/Documentos_actividad_guía/cities.csv' DELIMITER ',' CSV HEADER;
-\copy cities FROM 'C:/Users/usuario/Documents/cities.csv' DELIMITER ',' CSV HEADER; --asi copiamos los datos en una table, pero primero se debe transformar utf8
-\copy cities FROM 'C:\Users\usuario\Documents\cities.csv' DELIMITER ',' CSV HEADER;
-
+--seleccionamos los paises y sus estados todo juntos mostramos solo 10 registros y los ordenamos por latitude
 select * from countries
 inner join states on countries.id = states.country_id
 order  by countries.latitude
-limit (10); --seleccionamos los paises y sus estados todo juntos mostramos solo 10 registros y los ordenamos por latitude
+limit (10); 
 
 -- 1. Selecciona el cruce de ambas tablas ordenadas alfabéticamente por el nombre del
 -- país y limitando a 10 resultados.
